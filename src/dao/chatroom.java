@@ -7,6 +7,19 @@ import java.sql.SQLException;
 import db.DBUtil;
 
 public class chatroom {
+    public void getMyChatrooms(Connection con, int userId){
+        String sql = "SELECT * FROM chatroom WHERE inviter_id = ? OR invitee_id = ?";
+
+        try{
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, userId);
+            pst.setInt(2, userId);
+            int rows = pst.executeUpdate(); 
+        }catch (SQLException e) {
+            System.out.println("채팅방 생성중 예외 발생 : " +  e.getMessage());
+        }
+    }
+
     // 채팅방 생성
     public void createRoom(Connection con, int roomId, int inviterId, int inviteeId){
         String sql = "INSERT INTO chatroom(id,inviter_id,invitee_id) " +
