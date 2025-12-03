@@ -1,4 +1,3 @@
-
 -- USE meeting_db
 
 CREATE TABLE users (  -- 유저 정보
