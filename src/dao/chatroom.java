@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import db.DBUtil;
 
 public class chatroom {
+    // 내 채팅방 가져오기
     public void getMyChatrooms(Connection con, int userId){
         String sql = "SELECT * FROM chatroom WHERE inviter_id = ? OR invitee_id = ?";
 
@@ -34,8 +35,8 @@ public class chatroom {
         }catch (SQLException e) {
             System.out.println("채팅방 생성중 예외 발생 : " +  e.getMessage());
         }
-        
     };
+    
     // 채팅방 삭제
     public void deleteRoom(int roomId){
         Connection con = null;
