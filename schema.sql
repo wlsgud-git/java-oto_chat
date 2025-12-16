@@ -1,13 +1,13 @@
 -- USE meeting_db
 
 CREATE TABLE users (  -- 유저 정보
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id serial PRIMARY KEY NOT NULL,
     name VARCHAR(50),
     email VARCHAR(100) UNIQUE NOT NULL
-)
+);
 
 CREATE TABLE chatroom (  -- 채팅방 정보
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id serial PRIMARY KEY NOT NULL,
     inviter_id INT NOT NULL,
     invitee_id INT NOT NULL,
 

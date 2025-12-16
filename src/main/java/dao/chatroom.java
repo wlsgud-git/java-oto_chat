@@ -24,7 +24,7 @@ public class chatroom {
 
     // 특정 채팅방 내용 가져오기
     public void getChatroomById(int roomId){
-        String sql = "SELECT * FROM chatroom LEFT JOIN coversation ON chatroom.id = coversation.room_id WHERE chatroom.id = ? ORDER BY coversation.create_at DESC";
+        String sql = "SELECT * FROM chatroom LEFT JOIN coversation ON chatroom.id = coversation.room_id WHERE chatroom.id = ? ORDER BY coversation.created_at DESC";
         try{
             Connection con = DBUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class chatroom {
     // 채팅방 삭제
     public void deleteRoom(int roomId){
         Connection con = null;
-        String sql = "DELETE FROM meetings WHERE id = ?";
+        String sql = "DELETE FROM chatroom WHERE id = ?";
         try{
             con = DBUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
