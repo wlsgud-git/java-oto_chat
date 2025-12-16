@@ -7,10 +7,11 @@ import java.sql.SQLException;
 
 public class chat {
     // 채팅 내용
-    public void chatMake(Connection con, int room_id, int talker_id, String content, String date){
-        String sql = "INSERT INTO meetings(room_id,talker_id,content, create_at) " +
+    public void chatMake(int room_id, int talker_id, String content, String date){
+        String sql = "INSERT INTO coversation(room_id,talker_id,content, create_at) " +
                      "VALUES(?,?,?,?)";
         try {
+            Connection con = db.DBUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, room_id);
             pst.setInt(2, talker_id);

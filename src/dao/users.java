@@ -7,13 +7,14 @@ import java.sql.SQLException;
 
 public class users {
     // 회원가입
-    public void signup(Connection con, int id, String username, String email){
-        String sql = "INSERT INTO users(id,username,email) " +
+    public void signup(int id, String name, String email){
+        String sql = "INSERT INTO users(id,name,email) " +
                      "VALUES(?,?,?)";
         try {
+            Connection con = db.DBUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, id);
-            pst.setString(2, username);
+            pst.setString(2, name);
             pst.setString(3, email);
             int rows = pst.executeUpdate(); 
             System.out.println("회원가입이 완료되었습니다.");
@@ -22,15 +23,16 @@ public class users {
         }
     }
 
-    public void login(Connection con, String username){
-        String sql = "SELECT * FROM users WHERE username = ?";
+    public void login(String name){
+        String sql = "SELECT * FROM users WHERE name = ?";
         try {
+            Connection con = db.DBUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, username);
+            pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
              
             if(rs.next()){
-                System.out.println("로그인 성공: " + rs.getString("username") + "님 환영합니다.");
+                System.out.println("로그인 성공: " + rs.getString("name") + "님 환영합니다.");
             } else {
                 System.out.println("로그인 실패: 사용자 정보를 찾을 수 없습니다.");
             }

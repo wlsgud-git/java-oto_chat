@@ -15,6 +15,7 @@ CREATE TABLE chatroom (  -- 채팅방 정보
     FOREIGN KEY (invitee_id) REFERENCES users(id)
 );
 
+
 CREATE TABLE conversation (   -- 채딩방 대화 내용
     room_id INT NOT NULL,
     talker_id INT NOT NULL,
@@ -27,28 +28,28 @@ CREATE TABLE conversation (   -- 채딩방 대화 내용
 
 -- ERD Diagram --------------------------------------------
 
--- Table users {
---   id integer [pk,increment, not null]
---   username varchar [not null]
---   email varchar(30) [not null]
--- }
+Table users {
+  id integer [pk,increment, not null]
+  username varchar [not null]
+  email varchar(30) [not null]
+}
 
--- Table chatroom {
---   id integer [pk, increment,not null ]
---   inviter_id integer [not null]
---   invitee_id integer [not null]
--- }
+Table chatroom {
+  id integer [pk, increment,not null ]
+  inviter_id integer [not null]
+  invitee_id integer [not null]
+}
 
--- Table conversation {
---   room_id integer [not null]
---   talker_id integer [not null]
---   content text
---   created_at timestamp [default: `now()`, not null]
--- }
+Table conversation {
+  room_id integer [not null]
+  talker_id integer [not null]
+  content text
+  created_at timestamp [default: `now()`, not null]
+}
 
--- Ref: chatroom.inviter_id > users.id //초대자 
--- Ref: chatroom.invitee_id > users.id // 초대당한자
+Ref: chatroom.inviter_id > users.id //초대자 
+Ref: chatroom.invitee_id > users.id // 초대당한자
 
--- Ref: chatroom.id < conversation.room_id //방 아이디
--- Ref: users.id < conversation.talker_id //토커 아이디
+Ref: chatroom.id < conversation.room_id //방 아이디
+Ref: users.id < conversation.talker_id //토커 아이디
 
